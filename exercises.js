@@ -148,3 +148,19 @@ const getLengthOfLongestElement = (arr) => {
   const lengths = arr.map(word => word.length);
   return Math.max(...lengths)
 };
+
+
+// Part 4 Array Methods 10
+
+const squareElements = (arr) => {
+  return arr.map(el => el ** 2);
+}
+
+const filterOddElements = (arr) => arr.filter(el => el % 2 === 1);
+
+const computeProductOfAllElements = (arr) => {
+  if (arr.length === 0) return 0;
+  return arr.reduce((acc, cv) => {
+    return acc *= cv; 
+  }, 1)
+}
