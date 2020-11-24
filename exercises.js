@@ -138,3 +138,5 @@ const select = (arr, obj) => {
 const filterOddLengthWords = (arr) => {
   return arr.filter(word => word.length % 2 === 1);
 }
+
+const filterEvenLengthWords = (arr) => arr.filter(word => word.length % 2 === 0)
