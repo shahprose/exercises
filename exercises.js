@@ -196,3 +196,59 @@ const findShortestElement = (arr) => {
 const getLargestElement = (arr) => {
   return arr.length === 0 ? 0 : Math.max(...arr);
 }
+
+const computeSumOfAllElements = (arr) => {
+  return arr.reduce((acc, cv) => {
+    return acc += cv;
+  }, 0)
+}
+
+// Objects 7
+
+const getElementsThatEqual10AtProperty = (obj, key) => {
+  if (Array.isArray(obj[key]) === false) return [];
+  return obj[key].filter(el => el === 10);
+}
+
+const getElementsLessThan100AtProperty = (obj, key) => {
+  if (Array.isArray(obj[key]) === false) return [];
+  return obj[key].filter(el => el < 100);
+}
+
+const countAllCharacters = (str) => {
+  // create a cache object to store key-value pairs
+  const obj = {};
+
+  // iterate over the str
+  for (let i = 0; i < str.length; i+=1) {
+    let currentLetter = str[i];
+    if (currentLetter in obj) {
+      obj[currentLetter]++;
+    } else {
+      obj[currentLetter] = 1;
+    }
+  }
+    // if a letter is in the cache object, increment it
+    // otherwise assign it a value of 1
+  return obj;
+}
+
+const getElementsGreaterThan10AtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key]))) return [];
+  return obj[key].filter(el => el > 10);
+}
+
+const getFirstElementOfProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key]))) return undefined;
+  return obj[key] ? obj[key][0] : undefined;
+}
+
+const getNthElementOfProperty = (obj, key, index) => {
+  if (!(Array.isArray(obj[key]))) return undefined;
+  return obj[key] ? obj[key][index] : undefined;
+}
+
+const getLastElementOfProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key]))) return undefined;
+  return obj[key] ? obj[key][obj[key].length - 1] : undefined;
+}
