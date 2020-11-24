@@ -142,3 +142,9 @@ const filterOddLengthWords = (arr) => {
 const filterEvenLengthWords = (arr) => arr.filter(word => word.length % 2 === 0)
 
 // coding is relaxing
+
+const getLengthOfLongestElement = (arr) => {
+  if (arr.length === 0) return 0;
+  const lengths = arr.map(word => word.length);
+  return Math.max(...lengths)
+};
