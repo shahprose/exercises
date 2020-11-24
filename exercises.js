@@ -150,7 +150,7 @@ const getLengthOfLongestElement = (arr) => {
 };
 
 
-// Part 4 Array Methods 10
+// Part 4
 
 const squareElements = (arr) => {
   return arr.map(el => el ** 2);
@@ -163,4 +163,21 @@ const computeProductOfAllElements = (arr) => {
   return arr.reduce((acc, cv) => {
     return acc *= cv; 
   }, 1)
+}
+
+const filterEvenElements = (arr) => arr.filter(num => num % 2 === 0);
+
+const getLengthOfShortestElement = (arr) => {
+  if (arr.length === 0) return 0;
+  const arrLengths = arr.map(el => el.length);
+  return Math.min(...arrLengths);
+}
+
+const getLongestElement = (arr) => {
+  return arr.reduce((acc, cv) => {
+    if (cv.length > acc.length) {
+      acc = cv;
+    }
+    return acc;
+  }, '')
 }
