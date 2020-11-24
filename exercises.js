@@ -181,3 +181,18 @@ const getLongestElement = (arr) => {
     return acc;
   }, '')
 }
+
+const findSmallestElement = (arr) => {
+  return arr.length === 0 ? 0 : Math.min(...arr);
+}
+
+const findShortestElement = (arr) => {
+  if (arr.length === 0) return '';
+  const lengths = arr.map(el => el.length);
+  let min = Math.min(...lengths);
+  return arr.find(el => el.length === min);
+}
+
+const getLargestElement = (arr) => {
+  return arr.length === 0 ? 0 : Math.max(...arr);
+}
