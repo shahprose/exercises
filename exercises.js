@@ -119,7 +119,7 @@ const findShortestOfThreeWords = (...words) => {
 const select = (arr, obj) => {
   // create a new object literal
   const newObj = {};
-  
+
   // iterate over the keys of the original object
     // if the key is in the input array, 
     // create a key-value pair in the newObj
@@ -132,3 +132,9 @@ const select = (arr, obj) => {
   return newObj;
 }
 
+
+// Part 4 - Array Methods 9
+
+const filterOddLengthWords = (arr) => {
+  return arr.filter(word => word.length % 2 === 1);
+}
