@@ -252,3 +252,38 @@ const getLastElementOfProperty = (obj, key) => {
   if (!(Array.isArray(obj[key]))) return undefined;
   return obj[key] ? obj[key][obj[key].length - 1] : undefined;
 }
+
+const keep = (arr, keeper) => {
+  return arr.filter(el => el === keeper);
+}
+
+const computerAverageOfNumbers = (nums) => {
+  return nums.length === 0 ? 0 : 
+    (nums.reduce((acc, cv) => {
+      return acc += cv;
+    }, 0))/nums.length;
+}
+
+function getOddLengthWordsAtProperty(obj, key) {
+  if (Array.isArray(obj[key])) {
+      return obj[key].filter(el => el.length % 2 === 1);
+  };
+  return [];
+}
+
+const getAverageOfElementsAtProperty = (obj, key) => {
+  if (Array.isArray(obj[key]) && obj[key].length > 0) {
+    // use reduce to calculate the sum and then divide by the length of the array to get the average
+    let arr = obj[key];
+    return arr.reduce((acc, cv) => {
+      return acc += cv;
+    }, 0)/arr.length
+  }
+  // if the value at the object's key is not an array, return 0
+  return 0;
+}
+
+const getEvenLengthWordsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
+  return obj[key].filter(el => el.length % 2 === 0)
+}
