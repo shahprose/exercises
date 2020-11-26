@@ -435,3 +435,133 @@ const getLargestNumberAmongMixedElements = (arr) => {
     return acc;
   })
 }
+
+const computeSummationToN = (num) => {
+  let total = 0;
+  for (let i = 0; i <= num; i++) {
+    total += i;
+  }
+  return total;
+}
+
+const computeFactorialOfN = (num, total = 1) => {
+  if (num === 1) return total;
+  return num * computeFactorialOfN(num - 1);
+}
+
+console.log(computeFactorialOfN(5));
+
+// repeatString
+const repeatString = (str, num) => str.repeat(num);
+
+function computeCompoundInterest(principal, interestRate, compoundingFrequency, timeInYears) {
+  return principal * (1 + (interestRate/compoundingFrequency)) ** (compoundingFrequency * timeInYears) - principal;
+}
+
+// advanced 6
+
+const modulo = (num1, num2) => {
+  if (num1 === 0) return 0;
+  if (num2 === 0) return NaN;
+  if (typeof num1 !== 'number' || typeof num2 !== 'number') return NaN;
+
+  // convert num1 and num2 to absolute values
+  let absNum1 = Math.abs(num1);
+  let absNum2 = Math.abs(num2);
+  let evenlyGoes = 0;
+  while (evenlyGoes <= absNum1) {
+    evenlyGoes += absNum2;
+  }
+  evenlyGoes -= absNum2;
+  console.log({evenlyGoes});
+  let remainder = absNum1 - evenlyGoes;
+  return num1 < 0 ? -remainder : remainder;
+}
+
+console.log(modulo(5,2));
+
+// multiply 
+
+function multiply(num1, num2) {
+  let modNum1 = Math.abs(num1) 
+  let modNum2 = Math.abs(num2);
+  let total = 0;
+  for (let i = 1; i <= modNum2; i++) {
+      total += modNum1; 
+  }
+  if (num1 < 0 && num2 > 0) return -total;
+  if (num1 > 0 && num2 < 0) return -total;
+  return total;
+}
+
+
+const isOddWithoutModulo = num => {
+  let modNum = Math.abs(num);
+  // declare a variable to increment up to num
+  let incremental = 0;
+  while (incremental < modNum) {
+    incremental += 2;
+    console.log({incremental});
+  }
+
+  return incremental - modNum !== 0 ? true : false;
+}
+
+console.log(isOddWithoutModulo(0));
+
+const isEvenWithoutModulo = num => {
+  return Number.isInteger(num/2)
+}
+
+console.log(isEvenWithoutModulo(5))
+
+// iteration 6
+
+const multiplyBetween = (num1, num2) => {
+  if (num2 < num1 || num2 === num1) return 0;
+  // create a result variable;
+  let total = 1;
+  // iterate from num1 to num2 and multiply all the numbers adding to the total
+  for (let i = num1; i < num2; i++) {
+    total *= i;
+  }
+  return total;
+}
+
+console.log(multiplyBetween(2,5))
+
+const sumBetween = (num1, num2) => {
+  if (num2 < num1 || num2 === num1) return 0;
+  // create a result variable;
+  let total = 0;
+  // iterate from num1 to num2 and multiply all the numbers adding to the total
+  for (let i = num1; i < num2; i++) {
+    total += i;
+  }
+  return total;
+}
+
+
+
+// Module 1 - Diagnostic
+
+const transformFirstAndLast = (arr) => {
+  const obj = {};
+  obj[arr[0]] = arr[arr.length - 1]
+  return obj;
+}
+
+console.log(transformFirstAndLast(['Queen', 'Elizabeth', 'Of Hearts', 'Beyonce']))
+
+
+
+const transformArrayToObject = arrOfArrays => {
+  // create an object 
+  const obj = {};
+  // iterate over the array of arrays
+  for (let i = 0; i < arrOfArrays.length; i++) {
+    const subArr = arrOfArrays[i];
+    obj[subArr[0]] = subArr[1];
+  }
+  return obj;
+}
