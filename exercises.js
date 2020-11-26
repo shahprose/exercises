@@ -298,16 +298,6 @@ const getOddElementsAtProperty = (obj, key) => {
   return obj[key].filter(el => el % 2 === 1)
 }
 
-const getOddElementsAtProperty = (obj, key) => {
-  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
-  return obj[key].filter(el => el % 2 === 1)
-}
-
-const getOddElementsAtProperty = (obj, key) => {
-  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
-  return obj[key].filter(el => el % 2 === 0)
-}
-
 const getSmallestElementAtProperty = (obj, key) => {
   if (obj[key] === undefined || (!(Array.isArray(obj[key])))) return undefined
   if (obj[key].length === 0) return undefined;
@@ -330,4 +320,118 @@ const getElementOfArrayProperty = (obj, key, index) => {
   if (obj[key] === undefined || (!(Array.isArray(obj[key])))) return undefined
   if (obj[key].length === 0) return undefined;
   return obj[key][index];
+}
+
+// Math 5
+
+const calculateBillTotal = num => {
+  return num + num * (.15 + .095);
+}
+
+// Iteration 2 - recursive
+
+const getStringLength = (str, count = 0) => {
+  if (str[0] === undefined) return count;
+  count++;
+  let newStr = str.slice(0, -1);
+  return getStringLength(newStr, count);
+}
+
+console.log(getStringLength('hello'));
+
+
+// Array Methods 14;
+
+const joinArrayOfArrays = (...arrays) => {
+  return arrays.flat(2);
+}
+
+// objects 12
+
+const getProductOfAllElementsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || obj[key] === undefined) return 0;
+  if (obj[key].length === 0) return 0;
+  return obj[key].reduce((acc, cv) => {
+    acc = acc * cv;
+    return acc;
+  }, 1)
+}
+
+// advanced 5
+
+const sumDigits = (num) => {
+  // turn the absolute value of the num into a string
+  let strNum = String(Math.abs(num))
+  // split the string into an array
+  let strNumArray = strNum.split('');
+  let sum = strNumArray.reduce((acc, cv) => {
+    acc += Number(cv);
+    return acc;
+  }, 0)
+  // if the number was negative, add 2 times the negative number to the sum
+  return num < 0 ? sum + 2 * -strNumArray[0] : sum;
+}
+
+console.log(sumDigits(-316));
+
+
+// objects 13
+
+const getSumOfAllElementsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || obj[key] === undefined) {
+    return 0;
+  }
+
+  return obj[key].reduce((acc, cv) => acc += cv, 0);
+}
+
+
+// findShortestWordAmongMixedElements 
+
+const findShortestWordAmongMixedElements = (arr) => {
+  if (arr.length === 0) return '';
+  let filterWordsOutOfArray = arr.filter(el => typeof el === 'string');
+  if (filterWordsOutOfArray.length === 0) return '';
+  return filterWordsOutOfArray.reduce((acc, cv) => {
+    if (cv.length < acc.length) {
+      acc = cv;
+    }
+    return acc;
+  })
+}
+
+const findSmallestNumberAmongMixedElements = (arr) => {
+  if (arr.length === 0) return 0;
+  let filterNumbers = arr.filter(el => typeof el === 'number');
+  if (filterNumbers.length === 0) return 0;
+  return filterNumbers.reduce((acc, cv) => {
+    if (cv < acc) {
+      acc = cv;
+    }
+    return acc;
+  })
+}
+
+const findLongestWordOfMixedElements = (arr) => {
+  if (arr.length === 0) return '';
+  let filterWordsOutOfArray = arr.filter(el => typeof el === 'string');
+  if (filterWordsOutOfArray.length === 0) return '';
+  return filterWordsOutOfArray.reduce((acc, cv) => {
+    if (cv.length > acc.length) {
+      acc = cv;
+    }
+    return acc;
+  })
+}
+
+const getLargestNumberAmongMixedElements = (arr) => {
+  if (arr.length === 0) return 0;
+  let filterNumbers = arr.filter(el => typeof el === 'number');
+  if (filterNumbers.length === 0) return 0;
+  return filterNumbers.reduce((acc, cv) => {
+    if (cv > acc) {
+      acc = cv;
+    }
+    return acc;
+  })
 }
