@@ -287,3 +287,47 @@ const getEvenLengthWordsAtProperty = (obj, key) => {
   if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
   return obj[key].filter(el => el.length % 2 === 0)
 }
+
+const getSquaredElementsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
+  return obj[key].map(el => el ** 2);
+}
+
+const getOddElementsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
+  return obj[key].filter(el => el % 2 === 1)
+}
+
+const getOddElementsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
+  return obj[key].filter(el => el % 2 === 1)
+}
+
+const getOddElementsAtProperty = (obj, key) => {
+  if (!(Array.isArray(obj[key])) || !(obj[key])) return [];
+  return obj[key].filter(el => el % 2 === 0)
+}
+
+const getSmallestElementAtProperty = (obj, key) => {
+  if (obj[key] === undefined || (!(Array.isArray(obj[key])))) return undefined
+  if (obj[key].length === 0) return undefined;
+  return Math.min(...[...obj[key]]);
+}
+
+const getLargestElementAtProperty = (obj, key) => {
+  if (obj[key] === undefined || (!(Array.isArray(obj[key])))) return undefined
+  if (obj[key].length === 0) return undefined;
+  return Math.max(...[...obj[key]]);
+}
+
+const getAllButLastElementOfProperty = (obj, key) => {
+  if (obj[key] === undefined || (!(Array.isArray(obj[key])))) return [];
+  if (obj[key].length === 0) return [];
+  return obj[key].slice(0, -1);
+}
+
+const getElementOfArrayProperty = (obj, key, index) => {
+  if (obj[key] === undefined || (!(Array.isArray(obj[key])))) return undefined
+  if (obj[key].length === 0) return undefined;
+  return obj[key][index];
+}
