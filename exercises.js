@@ -565,3 +565,51 @@ const transformArrayToObject = arrOfArrays => {
   }
   return obj;
 }
+
+
+// convert array to object 3;
+
+const transformEmployeeData = array => {
+  // create an array
+  const resultArr = [];
+  
+  // loop over the input array
+  for (let arr of array) {
+    const employeeObj = {};
+    for (let subArr of arr) {
+      employeeObj[subArr[0]] = subArr[1];
+    }
+    resultArr.push(employeeObj);
+  }
+
+  return resultArr;
+}
+
+
+// Convert Object to Array 1;
+const getAllKeys = obj => {
+  const outputArr = [];
+  for (let key in obj) {
+    outputArr.push(key);
+  }
+}
+
+// Convert Object to Array 2;
+const listAllValues = obj => {
+  const outputArr = [];
+  for (let key in obj) {
+    outputArr.push(obj[key]);
+  }
+  return outputArr;
+}
+
+// convert object to Array3;
+const convertObjectToArray = (obj) => {
+  const outputArr = [];
+  for (let key in obj) {
+    const tempArr = [key, obj[key]];
+    outputArr.push(tempArr);
+  }
+  return outputArr; 
+}
+
