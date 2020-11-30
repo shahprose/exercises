@@ -229,3 +229,117 @@ const mySlice2 = (originalArray, startIdx = 0, endIdx = originalArray.length) =>
 const rotate = (originalArray, rotateNum) => {
   return [...originalArray.slice(-rotateNum), ...originalArray.slice(0, -rotateNum)]
 }
+
+// objects
+
+const lastFridayNight = (arr) => {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let currentObj = arr[i];
+    let { amount } = currentObj;
+    total += amount;
+  };
+  return total;
+};
+
+const compareObjects = (obj1, obj2) => {
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) return false;
+
+  for (let key in obj1) {
+    let currentVal1 = obj1[key];
+    let currentVal2 = obj2[key];
+    if (currentVal1 !== currentVal2) return false;
+  };
+
+  return true;
+}
+
+let letters = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' ];
+let leetChars = ['@', '8', '(', '|)', '3', 'ph', 'g', '#','l', '_|', '|<', '1', "|'|'|", '/\/', '0', '|D', '(,)', '|2', '5', '+', '|_|', '|/', "|/|/'",'><', 'j', '2'];
+
+const leetTranslator = (str) => {
+  // create a codex obj with letters as keys and leetchars as values
+  const codexObj = {};
+
+  letters.forEach((letter, idx) => {
+    codexObj[letter] = leetChars[idx];
+  });
+
+  // create an empty string
+  let newStr = '';
+  // loop over the string and construct a new string based on the letter's value property in the codex
+  for (let i = 0; i < str.length; i++) {
+    let currentLetter = str[i].toLowerCase();
+    newStr += codexObj[currentLetter];
+  }
+
+  // return the leet string
+  return newStr;
+}
+
+const frequencyAnalysis = (str) => {
+  const obj = {};
+  for (let i = 0; i < str.length; i++) {
+    let letter = str[i];
+    if (letter in obj) {
+      obj[letter]++;
+    } else {
+      obj[letter] = 1;
+    }
+  }
+  return obj;
+}
+
+const attendanceCheck = (str) => {
+  const presentStudents = [];
+  for (let obj of classRoom) {
+    for (let key in obj) {
+      const studentDaysArr = obj[key];
+      for (let day of studentDaysArr) {
+        if (day[str]) presentStudents.push(key);
+      }
+    }
+  };
+  return presentStudents;
+}
+
+let classRoom = [
+    {
+        "Marnie" : [
+                {"Monday" : true},
+                {"Tuesday" : true},
+                {"Wednesday" : true},
+                {"Thursday" : true},
+                {"Friday" : true}
+            ]
+    },
+    {
+        "Lena" : [
+                {"Monday" : false},
+                {"Tuesday" : false},
+                {"Wednesday" : true},
+                {"Thursday" : false},
+                {"Friday" : true}
+            ]
+    },
+    {
+        "Shoshanna" : [
+                {"Monday" : true},
+                {"Tuesday" : true},
+                {"Wednesday" : false},
+                {"Thursday" : true},
+                {"Friday" : false}
+            ]
+    },
+    {
+        "Jessa" : [
+                {"Monday" : false},
+                {"Tuesday" : false},
+                {"Wednesday" : false},
+                {"Thursday" : false},
+                {"Friday" : true}
+            ]
+    }
+];
+
+attendanceCheck('Monday');
