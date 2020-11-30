@@ -176,5 +176,56 @@ const arrayFlattener = (arr) => {
 }
 
 const makeGrid = (numColumns, numRows) => {
-  
+  // each row will be numColumns long;
+  // the number of times this will be pushed is numRows
+  const output = [];
+  for (let i = 1; i <= numRows; i++) {
+    const row = [];
+    for (let i = 1; i <= numColumns; i++) {
+      row.push(i);
+    }
+    output.push(row);
+  }
+  return output;
+}
+
+const removeColumns = (originalGrid, numColumns) => {
+  let columnWidth = originalGrid[[0]].length;
+  const output = [];
+  for (let i = 0; i < originalGrid.length; i++) {
+    const newRow = [];
+    for (let i = 1; i <= columnWidth - numColumns; i++) {
+      newRow.push(i);
+    }
+    output.push(newRow);
+  }
+  return output; 
+}
+
+const myJoin = (array, separator = ',') => {
+  let outputStr = '';
+  for (let i = 0; i < array.length; i++) {
+    let elem = array[i];
+    if (!(elem)) {
+      outputStr += separator;
+    } else {
+      outputStr += elem + separator;
+    }
+  }
+  return outputStr.slice(0, -separator.length);
+}
+
+const mySlice2 = (originalArray, startIdx = 0, endIdx = originalArray.length) => {
+  const outputArr = [];
+  if (startIdx < 0) startIdx = originalArray.length + startIdx;
+  if (endIdx < 0) endIdx = originalArray.length + endIdx;
+  for (let i = startIdx; i < endIdx; i++) {
+    let currentEl = originalArray[i];
+    outputArr.push(currentEl);
+  }
+  return outputArr; 
+}
+
+const rotate = (originalArray, rotateNum) => {
+  return [...originalArray.slice(-rotateNum), ...originalArray.slice(0, -rotateNum)]
 }
