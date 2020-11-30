@@ -111,3 +111,70 @@ const mostVowels = (str) => {
 
 // arrays I
 
+const oddCouple = (array) => {
+  const output = [];
+  for (let el of array) {
+    if (output.length === 2) break;
+    if (el % 2 === 1) output.push(el);
+  };
+  return output;
+}
+
+const myIncludes = (array, searchValue) => {
+  for (let elem of array) {
+    if (elem === searchValue) return true;
+  }
+  return false;
+}
+
+const myLastIndexOf = (array, searchValue, startIdx = array.length) => {
+  let indexOfFoundElement = -1;
+  for (let i = startIdx; i < array.length; i++) {
+    let currentEl = array[i];
+    if (currentEl === searchValue) {
+      indexOfFoundElement = i;
+    }
+  }
+  return indexOfFoundElement;
+}
+
+myLastIndexOf([0, 10, 20, 10, 0], 10)
+
+const myReverse = (array) => {
+  const output = [];
+  array.forEach(el => {
+    output.unshift(el);
+  })
+  return output;
+}
+
+const myUnshift = (arr, val) => {
+  return [val, ...arr];
+}
+
+const evenAndOdd = originalArray => {
+  return originalArray.reduce((acc, cv) => {
+    if (cv % 2 === 0) {
+      acc[0].push(cv);
+    } else {
+      acc[1].push(cv);
+    }
+    return acc;
+  },[[],[]])
+}
+
+const arrayFlattener = (arr) => {
+  const output = [];
+  for (let el of arr) {
+    if (Array.isArray(el)) {
+      output.push(...el);
+    } else {
+      output.push(el);
+    }
+  }
+  return output;
+}
+
+const makeGrid = (numColumns, numRows) => {
+  
+}
