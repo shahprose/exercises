@@ -343,3 +343,71 @@ let classRoom = [
 ];
 
 attendanceCheck('Monday');
+
+// object methods
+
+const me = {
+  name: 'Optimus Prime',
+  getGreeting() {
+    return `Hi, my name is ${this.name}.`
+  }
+}
+
+const me2 = {
+  name: 'Optimus',
+  getGreeting(obj) {
+    return `Hi ${obj.name}, my name is ${this.name}.`
+  }
+}
+
+const callThemAll = (obj, value) => {
+  const outputArr = [];
+  for (let key in obj) {
+    if (typeof obj[key] === 'function') {
+      outputArr.push(obj[key](value));
+    }
+  };
+  return outputArr;
+}
+
+let addNums = {
+  addTen: function(num) {
+    return num + 10;
+  },
+
+  addTwenty: function(num) {
+    return num + 20;
+  },
+
+  someProperty: 'value'
+};
+
+callThemAll(addNums, 100);
+
+const ticTacToe = {
+  makeBoard() {
+    const newBoard = [];
+    for (let i = 1; i <= 3; i++) {
+      let currentRow = [];
+      for (let i = 1; i <= 3; i++) {
+        currentRow.push(null);
+    };
+    newBoard.push(currentRow);
+    };
+    this.board = newBoard;
+    return this.board;
+    },
+  move(character, rowNum, colNum) {
+    if (this.board[rowNum][colNum] === null) {
+       this.board[rowNum][colNum] = character;
+    };
+    console.table(this.board);
+    return this.board;
+    },
+  clear() {
+    this.makeBoard();
+    return this.board;
+    }
+};
+
+ticTacToe.makeBoard();
