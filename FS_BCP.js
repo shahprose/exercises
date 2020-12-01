@@ -571,3 +571,88 @@ const stringify = (callback) => {
     return String(callback())
   }
 }
+
+// recursion
+
+const countToTen = (num) => {
+  if (num === 10) {
+    console.log(num);
+  } else {
+    console.log(num);
+    countToTen(num + 1);
+  }
+}
+
+countToTen(1);
+
+const backwardString = (str) => {
+  if (str.length === 0) return;
+  console.log(str[str.length - 1]);
+  str = str.slice(0, -1);
+  backwardString(str);
+}
+
+backwardString('happy');
+
+const sumNums = (num, total = 0) => {
+  if (num === 0) return total;
+  total += num;
+  return sumNums(num - 1, total);
+}
+
+sumNums(3);
+
+countVowels = (str, count = 0) => {
+  // create a base case to return the vowel count
+  if (str.length === 0) return count;
+  // create a string of vowels to check against
+  const VOWELS = 'aeiouAEIOU';
+  // check if a letter at a specific index is a vowelCount
+  if (VOWELS.includes(str[str.length - 1])) count++;
+  // slice off the end of string
+  str = str.slice(0, -1);
+  return countVowels(str, count);
+}
+
+countVowels('Four score and seven years'); // => 9
+
+const reverseArray2 = (arr, revArr = []) => {
+  // if arr.length is zero, return revArr
+  if (arr.length === 0) return revArr;
+  // pop off an element from arr and push it to revArr
+  revArr.push(arr.pop());
+  // return a recursive call to reverseArray
+  return reverseArray2(arr, revArr);
+}
+
+reverseArray2([1,2,3,4]);
+
+const sumDigits = (num, sum = 0) => {
+  if (num < 1) return sum;
+
+  // to grab the rightmost integer, we can use the modulo operator
+  let digit = num % 10;
+  // add this digit to the sum
+  sum += digit;
+  // divide the num argument by 10 and parseInt to remove the decimal
+  num = Math.trunc(num / 10);
+
+  // recursively call the function, passing in num and sum
+  return sumDigits(num, sum);
+}
+
+sumDigits(1234)
+
+const isPalindrome = (str) => {
+
+  if (str.length === 1 || str.length === 0) return true;
+  
+  str = str.toLowerCase();
+
+  if (str[0] !== str[str.length - 1]) return false;
+
+  str = str.slice(1, -1);
+
+  return isPalindrome(str);
+}
+
