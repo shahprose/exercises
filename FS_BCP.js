@@ -411,3 +411,163 @@ const ticTacToe = {
 };
 
 ticTacToe.makeBoard();
+
+// pbv pbr
+const veryOdd = (arr) => {
+  return arr.filter(el => el % 2 === 1);
+}
+
+const veryOddMutant = (arr) => {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    if (num % 2 === 0) {
+      arr[i] = 'normie';
+      count++;
+    };
+  }
+  return count;
+}
+
+const cloneMachine = (animal) => {
+  const clone = { ...animal };
+  clone.name = animal.name + 'Clone';
+  if (animal.offspring.length === 0) {
+    animal.offspring = [clone.name];
+  } else {
+    animal.offspring.push(clone.name);
+  }
+  return clone;
+}
+
+let dolly = {
+  name: 'Dolly',
+  species: 'sheep',
+  offspring: []
+}
+
+const newClone = cloneMachine(dolly);
+
+console.log(dolly);
+console.log(newClone);
+
+const reverseArray = (array) => {
+  let iterationTimes = array.length;
+  let indexToSplice = 0;
+
+  while (iterationTimes > 0) {
+    let poppedVal = array.pop();
+    array.splice(indexToSplice, 0, poppedVal);
+    iterationTimes--;
+    indexToSplice++;
+  }
+
+  return array;
+}
+
+const deeperCopy = (myArray) => {
+  let outputArr = [];
+  for (let i = 0; i < myArray.length; i++) {
+    let currentEl = myArray[i];
+    if (Array.isArray(currentEl)) {
+      outputArr.push([...currentEl]);
+    } else {
+      outputArr.push(currentEl);
+    }
+  };
+  return outputArr;
+};
+
+// higher order functions
+
+const functionLogger = (func, arg) => {
+  console.log('Function starting');
+  let result = func(arg);
+  console.log('Function complete');
+  return result;
+}
+
+const finderFunction = (arr, callback) => {
+  return arr.findIndex(el => callback(el));
+}
+
+const myForEach = (arr, callback) => {
+  const output = [];
+  for (let i = 0; i < arr.length; i++) {
+    let elem = arr[i];
+    output.push(callback(elem, i));
+  }
+  return output;
+}
+
+const chainReaction = (startVal, funcArray) => {
+  let returnVal = startVal;
+  for (let i = 0; i < funcArray.length; i++) {
+    let func = funcArray[i];
+    returnVal = func(returnVal);
+  }
+  return returnVal;
+}
+
+function addTen(num) {
+  return num + 10;
+}
+
+function subtractFive(num) {
+  return num - 5;
+}
+
+function multiplyFive(num) {
+  return num * 5;
+}
+
+chainReaction(0, [addTen, subtractFive, multiplyFive]); // => 25
+chainReaction(0, [subtractFive, multiplyFive, addTen]);
+
+const billerBuilder = (state) => {
+  let shippingAndTax = 1;
+  if (state === 'NY') {
+    shippingAndTax *= 1.03 * 1.04;
+  } else if (state === 'NJ') {
+    shippingAndTax *= 1.05 * 1.06625;
+  } else {
+    shippingAndTax = 1;
+  }; 
+  // return a function that takes the price of an item as a parameter
+  return (price) => {
+    return (price * shippingAndTax);
+  }
+}
+
+let newYorkBiller = billerBuilder('NY');
+newYorkBiller(100) // => 107.12 (100 * 1.03 * 1.04);
+
+let newJersBiller = billerBuilder('NJ');
+newJersBiller(100) // => 111.95625 (100 * 1.05 * 1.06625);
+
+const timesTable = (number) => {
+  return (num) => number * num;
+}
+
+let ninesTable = timesTable(9);
+ninesTable(8)    // => 72
+
+const partial = (callback, argA) => {
+  return (argB) => {
+    return callback(argA, argB);
+  }
+}
+
+const callCount = () => {
+  let count = 0;
+  return () => {
+    count++;
+    return count;
+  }
+}
+
+const stringify = (callback) => {
+  return () => {
+    return String(callback())
+  }
+}
