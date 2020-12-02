@@ -656,3 +656,135 @@ const isPalindrome = (str) => {
   return isPalindrome(str);
 }
 
+
+// recursion ii
+
+const logsArrayElements = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    let currentItem = arr[i];
+    if (Array.isArray(currentItem)) {
+      logsArrayElements(currentItem);
+    } else {
+      console.log(currentItem);
+    }
+  }
+}
+
+const concatEls = (arr, finalString = '') => {
+  for (let el of arr) {
+    if (Array.isArray(el)) {
+      finalString += concatEls(el);
+    } else {
+      finalString += el;
+    }
+  }
+  return finalString;
+}
+
+concatEls(['c',['a', 't']])
+
+// nestedObjects
+
+// write a function sumVals that sums the values in an object
+
+const sumVals = (obj, sum = 0) => {
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      sum += sumVals(obj[key]);
+    } else {
+      sum += obj[key];
+    }
+  }
+  return sum;
+}
+
+sumVals({a: 10, b: 20, c: {d: 40, e: {f: 30}}});
+
+// write a function that accepts an array of numbers and returns the sum of all the numbers in the array, no matter how nested
+
+const arraySum = (arr, sum = 0) => {
+  // iterate over the array
+    // if the element is an array,
+      // sum equals itself + a recusive call to this function
+    // else add the element to the sum
+  
+  for (let el of arr) {
+    if (Array.isArray(el)) {
+      sum += arraySum(el);
+    } else {
+      sum += el;
+    }
+  }
+
+  // return the sum
+  return sum;
+}
+
+arraySum([1, [2, 3, [4]]]) // => 10
+
+// all systems go
+
+const allSystemsGo = (obj, systemStatus = true) => {
+
+  for (let key in obj) {
+    // if the value of a key is an oject, recursively call this function
+    console.log(obj[key])
+    if (typeof obj[key] === 'object') {
+      let subSystemVal = allSystemsGo(obj[key]);
+      if (subSystemVal === false) return false;
+    } else {
+      if (obj[key] === false) return false;
+    }
+  }
+
+  return true;
+}
+
+// the truth counts 
+const theTruthCounts = (arr) => {
+  let count = 0;
+
+  for (let el of arr) {
+    if (Array.isArray(el)) {
+      count += theTruthCounts(el);
+    } else {
+      if (el) count++;
+    }
+  }
+  // return count
+  return count;
+}
+
+theTruthCounts([0, [true, ['yes']]])
+
+
+// getLongestName
+
+const getLongestName = (obj) => {
+  let longestName = '';
+  let subLong = '';
+  
+  for (let key in obj) {
+    if (key.length > longestName.length) {
+      longestName = key;
+    }; 
+
+    if (typeof obj[key] === 'object') {
+      subLong = getLongestName(obj[key]);
+    }
+  }
+
+  return longestName.length > subLong.length ? longestName : subLong;
+}
+
+let family = {
+  'Beverly Marquez': {
+    'Nina Rhone': {
+      'William Rhodes': null,
+      'Paul Nell': null,
+      'Sir Paddington the Fourth, of the county Wilstonshire': null
+    }
+  }
+};
+
+getLongestName(family); // => 'Sir Paddington the Fourth, of the county Wilstonshire'
